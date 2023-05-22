@@ -21,7 +21,7 @@ public class TwoSum {
     }
 
     public int[] twoSumHashMap(int[] nums, int target) {
-        //
+        // impletmation using hashmap
         return new int[1];
     }
 
