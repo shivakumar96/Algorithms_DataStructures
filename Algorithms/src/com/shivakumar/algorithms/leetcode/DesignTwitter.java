@@ -83,8 +83,33 @@ public class DesignTwitter {
     }
 
     public static void main(String[] args) {
-        //string[] commands = ["Twitter","postTweet","getNewsFeed","follow","postTweet","getNewsFeed","unfollow","getNewsFeed"]
-    }
+        String[] commands = new String[] {"Twitter","postTweet","getNewsFeed","follow",
+                "postTweet","getNewsFeed","unfollow","getNewsFeed"};
+        int[][] values = new int[][] {{},{1,5},{1},{1,2},{2,6},{1},{1,2},{1}};
 
+        List<List<Integer>> output = new ArrayList<List<Integer>>();
+        DesignTwitter twitter = null;
+
+        for(int i=0;i<commands.length;i++){
+
+            if(commands[i].equals("Twitter")){
+                twitter = new DesignTwitter();
+                output.add(null);
+            } else if(commands[i].equals("postTweet")){
+                twitter.postTweet(values[i][0],values[i][1]);
+                output.add(null);
+            }else if(commands[i].equals("follow")){
+                twitter.follow(values[i][0],values[i][1]);
+                output.add(null);
+
+            }else if(commands[i].equals("unfollow")){
+                twitter.unfollow(values[i][0],values[i][1]);
+                output.add(null);
+            } else if (commands[i].equals("getNewsFeed")) {
+                output.add(twitter.getNewsFeed(values[i][0]));
+            }
+        }
+        System.out.println(output);
+    }
 
 }
