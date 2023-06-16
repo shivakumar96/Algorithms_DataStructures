@@ -19,6 +19,7 @@ public class SerializeDeserializeBT {
         StringBuilder serialized = new StringBuilder("");
 
         while(!queue.isEmpty()){
+
             TreeNode node = queue.poll();
             if(node == null) {
                 if(queue.size()==0)
@@ -56,9 +57,9 @@ public class SerializeDeserializeBT {
             // adding left child
             if(!values[i].equals("#")){
                 node.left = new TreeNode(Integer.valueOf(values[i]));
-                i++;
                 queue.add(node.left);
             }
+            i++;
 
             // adding right child
             if(!values[i].equals("#")){
@@ -75,6 +76,9 @@ public class SerializeDeserializeBT {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
         root.right = new TreeNode(3);
+        root.right.left = new TreeNode(4);
+        root.right.right = new TreeNode(5);
+
         String s = sd.serialize(root);
         System.out.println(s);
         TreeNode d = sd.deserialize(s);
