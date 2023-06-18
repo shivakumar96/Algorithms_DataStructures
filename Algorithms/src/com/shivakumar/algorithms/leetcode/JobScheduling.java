@@ -37,10 +37,12 @@ class JobScheduling {
         dp.put(0,0);
         for(int i=0;i<jobs.length;i++){
             int val = jobs[i].value + dp.floorEntry(jobs[i].start).getValue();
-
+            System.out.println(dp);
             if(val > dp.lastEntry().getValue()){
                 dp.put(jobs[i].end,val);
             }
+            System.out.println(dp);
+            System.out.println("----------");
         }
 
 
