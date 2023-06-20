@@ -1,6 +1,4 @@
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 public class JavaCollections {
 
@@ -54,8 +52,14 @@ public class JavaCollections {
 
     }
 
-    public static void Queue(){
-
+    public static void queue(){
+        Queue<Integer> q = new LinkedList<Integer>();
+        q.add(1);
+        q.add(2);
+        System.out.println(q);
+        int head = q.poll();
+        System.out.println("head: "+ head);
+        System.out.println(q);
     }
 
     public static void Map(){
@@ -113,6 +117,8 @@ public class JavaCollections {
 
 
     public static void main(String[] args) {
-        Map();
+
+        //Map();
+        queue();
     }
 }
