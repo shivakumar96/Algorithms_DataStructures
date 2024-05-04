@@ -3,7 +3,7 @@ package com.shivakumar.algorithms.prep.a1;
 
 
 
- public class TreeNode {
+class TreeNode {
       int val;
       TreeNode left;
       TreeNode right;
@@ -20,7 +20,7 @@ package com.shivakumar.algorithms.prep.a1;
 public class CountGood {
 
     public int goodNodes(TreeNode root) {
-
+    return  0;
     }
     public static void main(String[] args) {
 
