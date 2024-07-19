@@ -1,8 +1,10 @@
 package com.lowlevel.design.file;
 
 
+import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,13 +42,25 @@ class TextFileDetector implements FileDetector{
     }
 }
 
-class FileDetectorDBFactory{
-    static List<FileDetector> getAllDetectors(){
-        List<FileDetector> detectors= new ArrayList<>();
+class FileDetectorDBSingleTon{
+    private static List<FileDetector> detectors;
+    private static FileDetectorDBSingleTon fileDetectorDBSingleTon = null;
+    private FileDetectorDBSingleTon(){
+        detectors= new ArrayList<>();
+    }
+    static FileDetectorDBSingleTon getInstance(){
+        if(fileDetectorDBSingleTon == null)
+            fileDetectorDBSingleTon = new FileDetectorDBSingleTon();
         detectors.add(new TextFileDetector());
         detectors.add(new XMLFileDetector());
-        return  detectors;
+        return  fileDetectorDBSingleTon;
     }
+    static List<FileDetector> getAllDetectors(){
+        if(fileDetectorDBSingleTon == null)
+            fileDetectorDBSingleTon = getInstance();
+        return  Collections.unmodifiableList(detectors);
+    }
+
 }
 
 
@@ -69,7 +83,7 @@ public class FileCommand {
         }
 
         String[] allFiles = directory.list();
-        List<FileDetector> detectors = FileDetectorDBFactory.getAllDetectors();
+        List<FileDetector> detectors = FileDetectorDBSingleTon.getAllDetectors();
 
         List<String> result = new ArrayList<>();
         for(String singleFile : allFiles){

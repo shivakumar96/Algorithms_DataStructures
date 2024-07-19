@@ -59,7 +59,7 @@ class ChickenBurgerFood implements BurgerFood{
 }
 
 abstract class RestaurantFact {
-    public BurgerFood orderburger() {
+    public BurgerFood orderBurger() {
         BurgerFood burger = createBurger();
         burger.prepare();
         return burger;
