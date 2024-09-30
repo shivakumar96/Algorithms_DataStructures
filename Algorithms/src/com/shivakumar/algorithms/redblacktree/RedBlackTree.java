@@ -5,15 +5,14 @@ import java.util.Queue;
 
 /**
  *
- *     RED BACK TREE Properties
- *
+ *     RED BLACK TREE Properties
  *     1. EVery Node is either red or black
  *     2. The nil/null/None node is considered as leaves of tree, and every nil-leaf is a black node
  *     3. The root is black
  *     4. If a node is red then both its children are black
  *     5. FOr each node, all paths from the node to descendant leaves contain same number of black nodes
- *
- *     //Insert algorithm, pseudo code. source = https://www.youtube.com/watch?v=aPqz3jyl8ak
+ *     /--------------------------------------
+ *     //Insert algorithm, pseudo code. source = {@link <a href="https://www.youtube.com/watch?v=aPqz3jyl8ak">...</a>}
  *     // z = current node, p[z] = parent;
  *     // While z != Root || color[p[z]] == red{
  *     //  do if p[z] == left[p[p[z]]
@@ -36,7 +35,7 @@ enum TreeColor{
     BLACK
 }
 
-class Node<K extends Comparable, V>{
+class Node<K extends Comparable<K>, V>{
     K key;
     V value;
 
@@ -65,7 +64,7 @@ class Node<K extends Comparable, V>{
 }
 
 
-public class RedBlackTree<K extends Comparable, V> {
+public class RedBlackTree<K extends Comparable<K>, V> {
     Node<K,V> root ;
     RedBlackTree(){
         root = null;
@@ -138,11 +137,13 @@ public class RedBlackTree<K extends Comparable, V> {
         // go to the respective parent node
         while (curr != null){
             parent = curr;
-            if(curr.key.compareTo(key) <0) {
+            if(curr.key !=null && curr.key.compareTo(key) <0) {
                 curr = curr.right;
             }
-            else if (curr.key.compareTo(key)>0) {
+            else if (curr.key != null && curr.key.compareTo(key)>0) {
                 curr =curr.left;
+            } else {
+                System.err.println("Error");
             }
         }
         System.out.println(parent);
@@ -217,6 +218,8 @@ public class RedBlackTree<K extends Comparable, V> {
             int size = queue.size();
             while (size>0){
                 Node<K,V> node = queue.poll();
+                if(node == null)
+                    continue;
                 System.out.println(node);
                 if(node.left != null)
                     queue.add(node.left);
@@ -264,7 +267,6 @@ public class RedBlackTree<K extends Comparable, V> {
 //        tree.insert(5,"a");
 //        tree.printTreeLevelOrder();
 //        System.out.println("\nEnd\n");
-
 
 
 
