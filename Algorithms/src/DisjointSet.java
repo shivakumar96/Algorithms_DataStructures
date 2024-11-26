@@ -1,5 +1,5 @@
-import java.awt.desktop.SystemEventListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -89,4 +89,13 @@ public class DisjointSet {
         System.out.println(ds2.rank);
     }
 
+    public static class ReverseSortArray {
+        public static void main(String[] args) {
+            int[] nums = new int[]{1,2,3,6,5};
+            nums = Arrays.stream(nums).boxed().sorted(Collections.reverseOrder()).mapToInt(Integer::intValue).toArray();
+            for(int i=0;i<nums.length;i++){
+                System.out.println(nums[i]);
+            }
+        }
+    }
 }
